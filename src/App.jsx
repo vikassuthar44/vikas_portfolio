@@ -233,7 +233,7 @@ export default function App() {
             variants={sectionVariants}
           >
             <motion.span className="pill" variants={itemVariants}>
-              Android • iOS • Websites • UI/UX
+              Android / iOS / Websites / UI/UX
             </motion.span>
             <motion.h1
               className="text-4xl leading-tight md:text-5xl lg:text-6xl"
@@ -508,8 +508,8 @@ export default function App() {
             </p>
             </div>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a className="btn-primary" href="mailto:hello@yourdomain.com">
-                hello@yourdomain.com
+              <a className="btn-primary" href="mailto:prsuthar44@gmail.com">
+                prsuthar44@gmail.com
               </a>
               <a className="btn-ghost-invert" href="#projects">
                 See latest work
@@ -556,7 +556,7 @@ export default function App() {
             </a>
             <a
               className="transition hover:text-[color:var(--ink)]"
-              href="mailto:hello@yourdomain.com"
+              href="mailto:prsuthar44@gmail.com"
             >
               Email
             </a>
