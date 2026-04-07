@@ -107,10 +107,55 @@ const milestones = [
 
 const platforms = ['Android', 'iOS', 'Websites', 'UI/UX Design']
 
+const SocialIcon = ({ type }) => {
+  if (type === 'linkedin') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        className="h-5 w-5 fill-current"
+      >
+        <path d="M4.98 3.5A2.49 2.49 0 1 0 5 8.48 2.49 2.49 0 0 0 4.98 3.5Zm.02 5.72H2.5V21h2.5V9.22ZM9.5 9.22H7V21h2.5v-6.25c0-3.6 4.5-3.9 4.5 0V21h2.5v-7.06c0-5.37-6.02-5.17-7.5-2.53V9.22Z" />
+      </svg>
+    )
+  }
+  if (type === 'instagram') {
+    return (
+      <svg
+        viewBox="0 0 24 24"
+        aria-hidden="true"
+        className="h-5 w-5 fill-current"
+      >
+        <path d="M7 3.5h10A3.5 3.5 0 0 1 20.5 7v10A3.5 3.5 0 0 1 17 20.5H7A3.5 3.5 0 0 1 3.5 17V7A3.5 3.5 0 0 1 7 3.5Zm0 2A1.5 1.5 0 0 0 5.5 7v10A1.5 1.5 0 0 0 7 18.5h10a1.5 1.5 0 0 0 1.5-1.5V7A1.5 1.5 0 0 0 17 5.5H7Zm5 2.75A4.75 4.75 0 1 1 7.25 13 4.75 4.75 0 0 1 12 8.25Zm0 2A2.75 2.75 0 1 0 14.75 13 2.75 2.75 0 0 0 12 10.25Zm5.5-.9a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1Z" />
+      </svg>
+    )
+  }
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-current">
+      <path d="M12 2.5A9.5 9.5 0 0 0 2.5 12c0 4.17 2.69 7.71 6.42 8.96.47.08.66-.2.66-.46v-1.63c-2.61.56-3.16-1.1-3.16-1.1-.43-1.08-1.05-1.37-1.05-1.37-.86-.59.07-.58.07-.58.95.07 1.45.98 1.45.98.85 1.45 2.23 1.03 2.78.79.08-.62.33-1.03.6-1.27-2.08-.24-4.26-1.04-4.26-4.62 0-1.02.36-1.86.96-2.52-.1-.23-.42-1.16.09-2.42 0 0 .78-.25 2.55.96.74-.2 1.54-.3 2.33-.3s1.59.1 2.33.3c1.77-1.21 2.55-.96 2.55-.96.51 1.26.19 2.19.1 2.42.6.66.96 1.5.96 2.52 0 3.59-2.18 4.38-4.27 4.62.34.3.64.9.64 1.82v2.21c0 .26.18.54.66.46A9.5 9.5 0 0 0 21.5 12 9.5 9.5 0 0 0 12 2.5Z" />
+    </svg>
+  )
+}
+
 const socials = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/prsuthar' },
-  { label: 'Instagram', href: 'https://www.instagram.com/dev_vikas44/' },
-  { label: 'GitHub', href: 'https://github.com/vikassuthar44' },
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/prsuthar',
+    handle: 'linkedin.com/in/prsuthar',
+    type: 'linkedin',
+  },
+  {
+    label: 'Instagram',
+    href: 'https://www.instagram.com/dev_vikas44/',
+    handle: '@dev_vikas44',
+    type: 'instagram',
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/vikassuthar44',
+    handle: 'github.com/vikassuthar44',
+    type: 'github',
+  },
 ]
 
 const sectionVariants = {
@@ -470,16 +515,31 @@ export default function App() {
                 See latest work
               </a>
             </div>
-            <div className="mt-6 flex flex-wrap gap-3 text-sm text-white/80">
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {socials.map((item) => (
                 <a
                   key={item.label}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/30 px-4 py-2 transition hover:border-white/70"
+                  className="group flex items-center justify-between gap-4 rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-left text-sm text-white/80 backdrop-blur transition hover:-translate-y-1 hover:border-white/60 hover:bg-white/20"
                   href={item.href}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  {item.label}
+                  <span className="flex items-center gap-3">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white">
+                      <SocialIcon type={item.type} />
+                    </span>
+                    <span>
+                      <span className="block text-sm font-semibold text-white">
+                        {item.label}
+                      </span>
+                      <span className="block text-xs text-white/70">
+                        {item.handle}
+                      </span>
+                    </span>
+                  </span>
+                  <span className="text-white/50 transition group-hover:text-white">
+                    ↗
+                  </span>
                 </a>
               ))}
             </div>
@@ -500,17 +560,23 @@ export default function App() {
             >
               Email
             </a>
-            {socials.map((item) => (
-              <a
-                key={item.label}
-                className="transition hover:text-[color:var(--ink)]"
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {item.label}
-              </a>
-            ))}
+            <span className="flex items-center gap-3">
+              {socials.map((item) => (
+                <a
+                  key={item.label}
+                  className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/60 text-[color:var(--ink)] transition hover:-translate-y-1 hover:border-black/30"
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={item.label}
+                  title={item.label}
+                >
+                  <span className="text-[color:var(--ink)] transition group-hover:text-black">
+                    <SocialIcon type={item.type} />
+                  </span>
+                </a>
+              ))}
+            </span>
           </div>
         </div>
       </footer>
