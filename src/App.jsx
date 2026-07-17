@@ -1,584 +1,303 @@
-import { motion } from 'framer-motion'
+import { motion as Motion } from 'framer-motion'
 import './App.css'
 
-const projects = [
+const apps = [
+  {
+    title: 'Pocket Games',
+    subtitle: 'All Board Games',
+    type: 'Board & casual games',
+    description:
+      'One lightweight app for classic favourites including 8 Ball Pool, Call Break, Chess, Snake & Ladder, and Sudoku—with offline play and smart AI opponents.',
+    image:
+      'https://play-lh.googleusercontent.com/t9SOeEknv6I7dEhZPCqYsnS-uzRCLXUIqb1SQcVHh1USiT3J5nQG7N1jBqCJtQXNY0m4yHCBBKkaHi6LGJujbg',
+    link: 'https://play.google.com/store/apps/details?id=best.app.pocketgames',
+    tags: ['Offline play', 'Game AI', 'Multi-game'],
+    accent: '#ffb84d',
+    featured: true,
+  },
   {
     title: 'Ludo Khel',
-    category: 'Multiplayer Game',
+    subtitle: 'Play & Win Coins',
+    type: 'Multiplayer game',
     description:
-      'A vibrant Ludo experience with real time rooms, fast matchmaking, and smooth in game animations.',
+      'A colourful Ludo experience with online matches, friend invites, Google sign-in, coins, rankings, and smooth gameplay designed for every device.',
+    image:
+      'https://play-lh.googleusercontent.com/3ZPnUamCUnhgrzoVNWrw1G31OP_0bJT45wntPSXgyBKTmFJZYuGrCDutAEEcJTisGIw7DM4tQxAX8ryaQrdrfQ',
     link: 'https://play.google.com/store/apps/details?id=best.app.ludo',
-    gradient: 'from-[#ff6b6b] via-[#ffd166] to-[#06d6a0]',
-    emoji: '🎲',
-    stack: ['Realtime rooms', 'Kotlin', 'Leaderboards'],
+    website: 'https://ludokhel.in/',
+    tags: ['Multiplayer', 'Firebase', 'Coins & ranks'],
+    accent: '#ef5a5a',
+    featured: true,
+  },
+  {
+    title: 'SplitEase',
+    subtitle: 'Shared Expenses',
+    type: 'Finance utility',
+    description:
+      'A clean way for friends, travellers, and roommates to split bills, track group expenses, see who owes whom, and settle balances without spreadsheets.',
+    image:
+      'https://play-lh.googleusercontent.com/sVGnwDxDlTvF4IWrN6RpUL3_auqdvMygYnbwvBk0rSVRhlMps3Y-DlBMwL7O6OzU8wuvlv7V6dPYWtwd5ff4RA',
+    link: 'https://play.google.com/store/apps/details?id=com.best.splitwise',
+    tags: ['Groups', 'Smart splits', 'Settlements'],
+    accent: '#6c63ff',
   },
   {
     title: 'Cashbook',
-    category: 'Finance App',
+    subtitle: 'Cash & Expense App',
+    type: 'Business finance',
     description:
-      'Daily expense tracking and split management with smart summaries and reminders.',
+      'Daily cash-in, cash-out, customer ledgers, expense categories, reports, and PDF exports for shop owners, freelancers, and small businesses.',
+    image:
+      'https://play-lh.googleusercontent.com/rrWZcetl36NfgyB-LAHn04vEmRXp5xRRNC1yyvh91aSJVtZRSTl4tsJ5x639jBtzGuD6biNkWunp6EE7_u5_HA',
     link: 'https://play.google.com/store/apps/details?id=best.cashbook.split',
-    gradient: 'from-[#43aa8b] via-[#4d908e] to-[#277da1]',
-    emoji: '💸',
-    stack: ['Offline first', 'Charts', 'Cloud sync'],
+    tags: ['Offline first', 'PDF reports', 'Ledgers'],
+    accent: '#1eb980',
   },
   {
     title: 'Vyaapar Book',
-    category: 'Business App',
+    subtitle: 'Invoice Maker',
+    type: 'Business toolkit',
     description:
-      'Invoice creation, GST ready billing, and customer history designed for busy shop owners.',
+      'A fast mobile toolkit to create GST-ready invoices and estimates, manage products and stock, export PDFs, and share with customers.',
+    image:
+      'https://play-lh.googleusercontent.com/KzYqIA920VbUhvNo6C5ui1i4C8xJqzIzt9DKBdzFLMXOvN3qRU-chUgOY4yJ5U6VRzsaDg3INJWjimyvikhu3A',
     link: 'https://play.google.com/store/apps/details?id=best.business.vyaaparbook',
-    gradient: 'from-[#f8961e] via-[#f3722c] to-[#f94144]',
-    emoji: '🧾',
-    stack: ['PDF export', 'WhatsApp share', 'Inventory'],
+    tags: ['Invoices', 'Inventory', 'GST & PDF'],
+    accent: '#3282f6',
   },
   {
     title: 'Moodify',
-    category: 'Design App',
+    subtitle: 'Quotes with Photo',
+    type: 'Creative app',
     description:
-      'Create quotes, posters, and social assets with beautiful typography presets.',
+      'A simple creative studio for turning meaningful quotes and personal photos into polished, shareable visuals with expressive typography.',
+    image:
+      'https://play-lh.googleusercontent.com/RZIySfyTgNWV48Ba_GuH6JiIJQE4ZjGMKgYbD1jYbeM79d4AFW-x9gvuSd_I4S2NLZ2TluvsLuaySnKtAD2NGg',
     link: 'https://play.google.com/store/apps/details?id=com.vikassuthar.moodify',
-    gradient: 'from-[#f4a261] via-[#e76f51] to-[#2a9d8f]',
-    emoji: '✨',
-    stack: ['Templates', 'Fonts', 'Export'],
+    tags: ['Photo editor', 'Quotes', 'Social sharing'],
+    accent: '#d858d6',
   },
+]
+
+const upcoming = [
   {
-    title: 'Medical Vidyarthi',
-    category: 'Education App',
+    number: '01',
+    title: 'E-Billing',
+    label: 'Business · In development',
     description:
-      'Structured learning paths, quiz packs, and revision support for medical students.',
-    link: 'https://play.google.com/store/apps/details?id=com.medical.vidhyarthi',
-    gradient: 'from-[#219ebc] via-[#8ecae6] to-[#023047]',
-    emoji: '📚',
-    stack: ['Quiz bank', 'Progress', 'Downloads'],
+      'A faster billing workflow for modern Indian businesses—estimates, invoices, payments, and clear business insights in one place.',
+    gradient: 'linear-gradient(135deg, #ffca6b, #ff7a59)',
+  },
+  {
+    number: '02',
+    title: 'E-Commerce',
+    label: 'Commerce · Exploring',
+    description:
+      'A mobile-first shopping experience focused on fast discovery, frictionless checkout, and a simple seller workflow.',
+    gradient: 'linear-gradient(135deg, #7ee8c7, #3da7ff)',
+  },
+  {
+    number: '03',
+    title: 'AI Product',
+    label: 'AI · Researching',
+    description:
+      'A practical AI-powered product that turns everyday work into a shorter, smarter, and more personal workflow.',
+    gradient: 'linear-gradient(135deg, #c69cff, #7048ff)',
   },
 ]
 
-const skills = [
-  {
-    title: 'Android & iOS Apps',
-    description: 'Native builds with reliable architecture and silky performance.',
-    items: ['Kotlin', 'Swift', 'Jetpack Compose', 'SwiftUI'],
-  },
-  {
-    title: 'Websites & Web Apps',
-    description: 'Fast, responsive sites that feel like products.',
-    items: ['React', 'Vite', 'Next.js', 'Performance'],
-  },
-  {
-    title: 'UI/UX Design',
-    description: 'Human centered flows with crisp visuals and motion.',
-    items: ['User research', 'Wireframes', 'Design systems', 'Prototyping'],
-  },
+const capabilities = [
+  ['01', 'Product strategy', 'Turning an early idea into a focused feature set and a launchable roadmap.'],
+  ['02', 'UI/UX design', 'Clear flows, purposeful visual systems, and interfaces that feel natural on real devices.'],
+  ['03', 'Android development', 'Reliable, maintainable mobile apps built for performance, scale, and Play Store delivery.'],
+  ['04', 'Web experiences', 'Fast responsive websites and web apps that extend the product beyond mobile.'],
 ]
 
-const testimonials = [
-  {
-    quote:
-      'Vikas moved fast and still cared about every tiny detail. Our launch felt premium.',
-    name: 'Aarav Mehta',
-    role: 'Founder, Dice Labs',
-  },
-  {
-    quote:
-      'Clear communication, beautiful UI, and great suggestions for product improvements.',
-    name: 'Riya Sharma',
-    role: 'Product Lead, Finwise',
-  },
-  {
-    quote:
-      'We hit the Play Store deadline with a polished build and strong early reviews.',
-    name: 'Kabir Singh',
-    role: 'Growth, Ludo Khel',
-  },
-]
+const Arrow = () => <span aria-hidden="true">↗</span>
 
-const stats = [
-  { value: 'Android + iOS', label: 'Mobile platforms' },
-  { value: 'Web', label: 'Responsive websites' },
-  { value: 'UI/UX', label: 'Design systems' },
-]
+const PlayIcon = () => (
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3.7 2.8a2 2 0 0 0-.7 1.5v15.4a2 2 0 0 0 .7 1.5l9.1-9.2-9.1-9.2Zm10.5 10.6-2.3 2.3 5.7 3.2 2.9-1.6c.8-.5.8-1.5 0-2l-3.6-2-2.7.1Zm2.7-2.7 3.6-2c.8-.5.8-1.5 0-2l-2.9-1.6-5.7 3.2 2.3 2.3 2.7.1ZM4.8 2.3l8 4.5-2.3 2.3-5.7-6.8Zm0 19.4 5.7-6.8 2.3 2.3-8 4.5Z" />
+  </svg>
+)
 
-const milestones = [
-  'Strategy and design sprints with rapid prototyping.',
-  'Reliable engineering using scalable architecture.',
-  'Launch support with ASO, assets, and analytics.',
-]
-
-const platforms = ['Android', 'iOS', 'Websites', 'UI/UX Design']
-
-const SocialIcon = ({ type }) => {
-  if (type === 'linkedin') {
-    return (
-      <svg
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-        className="h-5 w-5 fill-current"
-      >
-        <path d="M4.98 3.5A2.49 2.49 0 1 0 5 8.48 2.49 2.49 0 0 0 4.98 3.5Zm.02 5.72H2.5V21h2.5V9.22ZM9.5 9.22H7V21h2.5v-6.25c0-3.6 4.5-3.9 4.5 0V21h2.5v-7.06c0-5.37-6.02-5.17-7.5-2.53V9.22Z" />
-      </svg>
-    )
-  }
-  if (type === 'instagram') {
-    return (
-      <svg
-        viewBox="0 0 24 24"
-        aria-hidden="true"
-        className="h-5 w-5 fill-current"
-      >
-        <path d="M7 3.5h10A3.5 3.5 0 0 1 20.5 7v10A3.5 3.5 0 0 1 17 20.5H7A3.5 3.5 0 0 1 3.5 17V7A3.5 3.5 0 0 1 7 3.5Zm0 2A1.5 1.5 0 0 0 5.5 7v10A1.5 1.5 0 0 0 7 18.5h10a1.5 1.5 0 0 0 1.5-1.5V7A1.5 1.5 0 0 0 17 5.5H7Zm5 2.75A4.75 4.75 0 1 1 7.25 13 4.75 4.75 0 0 1 12 8.25Zm0 2A2.75 2.75 0 1 0 14.75 13 2.75 2.75 0 0 0 12 10.25Zm5.5-.9a1.1 1.1 0 1 1-1.1-1.1 1.1 1.1 0 0 1 1.1 1.1Z" />
-      </svg>
-    )
-  }
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" className="h-5 w-5 fill-current">
-      <path d="M12 2.5A9.5 9.5 0 0 0 2.5 12c0 4.17 2.69 7.71 6.42 8.96.47.08.66-.2.66-.46v-1.63c-2.61.56-3.16-1.1-3.16-1.1-.43-1.08-1.05-1.37-1.05-1.37-.86-.59.07-.58.07-.58.95.07 1.45.98 1.45.98.85 1.45 2.23 1.03 2.78.79.08-.62.33-1.03.6-1.27-2.08-.24-4.26-1.04-4.26-4.62 0-1.02.36-1.86.96-2.52-.1-.23-.42-1.16.09-2.42 0 0 .78-.25 2.55.96.74-.2 1.54-.3 2.33-.3s1.59.1 2.33.3c1.77-1.21 2.55-.96 2.55-.96.51 1.26.19 2.19.1 2.42.6.66.96 1.5.96 2.52 0 3.59-2.18 4.38-4.27 4.62.34.3.64.9.64 1.82v2.21c0 .26.18.54.66.46A9.5 9.5 0 0 0 21.5 12 9.5 9.5 0 0 0 12 2.5Z" />
-    </svg>
-  )
-}
-
-const socials = [
-  {
-    label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/prsuthar',
-    handle: 'linkedin.com/in/prsuthar',
-    type: 'linkedin',
-  },
-  {
-    label: 'Instagram',
-    href: 'https://www.instagram.com/dev_vikas44/',
-    handle: '@dev_vikas44',
-    type: 'instagram',
-  },
-  {
-    label: 'GitHub',
-    href: 'https://github.com/vikassuthar44',
-    handle: 'github.com/vikassuthar44',
-    type: 'github',
-  },
-]
-
-const sectionVariants = {
-  hidden: { opacity: 0, y: 16 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: 'easeOut', staggerChildren: 0.12 },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+const fade = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.65, ease: 'easeOut' } },
 }
 
 export default function App() {
   return (
-    <div className="relative overflow-hidden">
-      <motion.div
-        className="glow-orb glow-warm -left-40 top-10 h-72 w-72"
-        animate={{ y: [0, -20, 0], x: [0, 12, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="glow-orb glow-cool -right-32 top-24 h-80 w-80"
-        animate={{ y: [0, 24, 0], x: [0, -10, 0] }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
-      />
-      <motion.div
-        className="glow-orb glow-deep left-24 top-[65%] h-64 w-64"
-        animate={{ y: [0, -18, 0], x: [0, -6, 0] }}
-        transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      <header className="relative z-20">
-        <div className="container-shell flex items-center justify-between py-6">
-          <div className="flex items-center gap-3">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[color:var(--ink)] text-sm font-semibold text-white">
-              VS
-            </div>
-            <div>
-              <p className="text-xs uppercase tracking-[0.3em] text-[color:var(--muted)]">
-                Portfolio
-              </p>
-              <p className="text-base font-semibold">Vikas Suthar</p>
-            </div>
-          </div>
-          <nav className="hidden items-center gap-6 text-sm font-semibold text-[color:var(--muted)] md:flex">
-            <a className="transition hover:text-[color:var(--ink)]" href="#about">
-              About
-            </a>
-            <a className="transition hover:text-[color:var(--ink)]" href="#skills">
-              Skills
-            </a>
-            <a className="transition hover:text-[color:var(--ink)]" href="#projects">
-              Projects
-            </a>
-            <a className="transition hover:text-[color:var(--ink)]" href="#testimonials">
-              Testimonials
-            </a>
-          </nav>
-          <a className="btn-ghost hidden md:inline-flex" href="#contact">
-            Let's talk
-          </a>
-        </div>
+    <div className="site-shell">
+      <header className="nav-wrap">
+        <a className="brand" href="#top" aria-label="Vikas Suthar home">
+          <span className="brand-mark">VS</span>
+          <span>Vikas Suthar</span>
+        </a>
+        <nav aria-label="Primary navigation">
+          <a href="#work">Work</a>
+          <a href="#about">About</a>
+          <a href="#next">What's next</a>
+        </nav>
+        <a className="nav-cta" href="mailto:prsuthar44@gmail.com">
+          Let's talk <Arrow />
+        </a>
       </header>
 
-      <section id="home" className="relative z-10">
-        <div className="container-shell grid gap-10 py-12 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
-          <motion.div
-            className="space-y-6"
-            initial="hidden"
-            animate="show"
-            variants={sectionVariants}
-          >
-            <motion.span className="pill" variants={itemVariants}>
-              Android / iOS / Websites / UI/UX
-            </motion.span>
-            <motion.h1
-              className="text-4xl leading-tight md:text-5xl lg:text-6xl"
-              variants={itemVariants}
-            >
-              Crafting{' '}
-              <span className="gradient-text">Android, iOS, and Web</span> products
-              with UI/UX that feels premium and performs fast.
-            </motion.h1>
-            <motion.p
-              className="max-w-xl text-base text-[color:var(--muted)] md:text-lg"
-              variants={itemVariants}
-            >
-              I design UI/UX and ship production ready Android, iOS, and web
-              experiences end to end. Expect polished flows, clean architecture,
-              and launch ready assets.
-            </motion.p>
-            <motion.div className="flex flex-wrap gap-2" variants={itemVariants}>
-              {platforms.map((platform) => (
-                <span key={platform} className="tag">
-                  {platform}
-                </span>
-              ))}
-            </motion.div>
-            <motion.div className="flex flex-wrap gap-3" variants={itemVariants}>
-              <a className="btn-primary" href="#projects">
-                View apps
-              </a>
-              <a className="btn-ghost" href="#contact">
-                Start a project
-              </a>
-            </motion.div>
-            <motion.div
-              className="grid gap-4 pt-2 sm:grid-cols-3"
-              variants={itemVariants}
-            >
-              {stats.map((stat) => (
-                <div key={stat.label} className="card text-left">
-                  <p className="text-2xl font-semibold">{stat.value}</p>
-                  <p className="text-sm text-[color:var(--muted)]">{stat.label}</p>
-                </div>
-              ))}
-            </motion.div>
-          </motion.div>
-
-          <motion.div
-            className="grid gap-4"
-            initial="hidden"
-            animate="show"
-            variants={sectionVariants}
-          >
-            <motion.div className="card" variants={itemVariants}>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--muted)]">
-                Focus areas
+      <main id="top">
+        <section className="hero section-pad">
+          <div className="hero-copy">
+            <Motion.div initial="hidden" animate="show" variants={fade}>
+              <span className="eyebrow"><i /> Available for new projects</span>
+              <h1>I build useful digital products people enjoy using.</h1>
+              <p className="hero-lede">
+                Android developer and product builder creating thoughtful mobile apps,
+                web experiences, and UI/UX—from the first sketch to the Play Store.
               </p>
-              <h3 className="mt-3 text-xl font-semibold">
-                Experiences that feel fast, friendly, and consistent everywhere.
-              </h3>
-              <p className="mt-3 text-sm text-[color:var(--muted)]">
-                UI/UX polish across Android, iOS, and web with onboarding clarity
-                and delightful micro flows that drive retention.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {['Android', 'iOS', 'Web', 'UI/UX'].map((item) => (
-                  <span key={item} className="tag">
-                    {item}
-                  </span>
-                ))}
+              <div className="hero-actions">
+                <a className="button button-light" href="#work">Explore my work <Arrow /></a>
+                <a className="text-link" href="mailto:prsuthar44@gmail.com">Start a conversation <Arrow /></a>
               </div>
-            </motion.div>
-            <motion.div className="card" variants={itemVariants}>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--muted)]">
-                Working style
-              </p>
-              <h3 className="mt-3 text-xl font-semibold">
-                Lean, collaborative, and focused on shipping.
-              </h3>
-              <p className="mt-3 text-sm text-[color:var(--muted)]">
-                Weekly demos, tight feedback loops, and measurable outcomes.
-              </p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {['Weekly updates', 'Build reviews', 'Launch checklist'].map(
-                  (item) => (
-                    <span key={item} className="tag">
-                      {item}
-                    </span>
-                  ),
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </section>
-
-      <motion.section
-        id="about"
-        className="relative z-10"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={sectionVariants}
-      >
-        <div className="container-shell grid gap-10 py-16 lg:grid-cols-[0.9fr_1.1fr]">
-          <motion.div variants={itemVariants}>
-            <span className="pill">About</span>
-            <h2 className="mt-4 text-3xl md:text-4xl">
-              I blend engineering, UI/UX design, and growth to deliver Android,
-              iOS, and web products built for real people.
-            </h2>
-            <p className="mt-4 text-[color:var(--muted)]">
-              From multiplayer games to finance tools, I focus on clarity and
-              trust. Every project ships with a clean visual system, thoughtful
-              onboarding, and performance tuned for real devices and browsers.
-            </p>
-          </motion.div>
-          <motion.div className="card" variants={itemVariants}>
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[color:var(--muted)]">
-              How I work
-            </p>
-            <ul className="mt-4 space-y-4 text-left text-sm text-[color:var(--muted)]">
-              {milestones.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="mt-2 h-2 w-2 rounded-full bg-[color:var(--accent)]" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {['Strategy', 'Design', 'Build', 'Launch'].map((item) => (
-                <span key={item} className="tag">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        id="skills"
-        className="relative z-10"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={sectionVariants}
-      >
-        <div className="container-shell py-16">
-          <motion.div className="flex flex-col gap-3" variants={itemVariants}>
-            <span className="pill">Skills</span>
-            <h2 className="text-3xl md:text-4xl">Everything needed to ship.</h2>
-            <p className="max-w-2xl text-[color:var(--muted)]">
-              A full stack of Android, iOS, web, and UI/UX delivery skills to
-              move your product from idea to launch with speed and quality.
-            </p>
-          </motion.div>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {skills.map((skill) => (
-              <motion.div key={skill.title} className="card" variants={itemVariants}>
-                <h3 className="text-lg font-semibold">{skill.title}</h3>
-                <p className="mt-3 text-sm text-[color:var(--muted)]">
-                  {skill.description}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {skill.items.map((item) => (
-                    <span key={item} className="tag">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+            </Motion.div>
           </div>
-        </div>
-      </motion.section>
 
-      <motion.section
-        id="projects"
-        className="relative z-10"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={sectionVariants}
-      >
-        <div className="container-shell py-16">
-          <motion.div className="flex flex-col gap-3" variants={itemVariants}>
-            <span className="pill">Projects</span>
-            <h2 className="text-3xl md:text-4xl">Selected app launches.</h2>
-            <p className="max-w-2xl text-[color:var(--muted)]">
-              Recent Android, iOS, and web products focused on retention,
-              usability, and a strong store presence.
-            </p>
-          </motion.div>
-          <div className="mt-10 grid gap-6 lg:grid-cols-2">
-            {projects.map((project) => (
-              <motion.div key={project.title} className="card" variants={itemVariants}>
-                <div
-                  className={`rounded-2xl bg-gradient-to-r ${project.gradient} p-5 text-white`}
-                >
-                  <div className="text-3xl">{project.emoji}</div>
-                  <p className="mt-3 text-xs uppercase tracking-[0.3em] text-white/80">
-                    {project.category}
-                  </p>
-                  <h3 className="mt-2 text-2xl font-semibold">{project.title}</h3>
-                </div>
-                <p className="mt-5 text-sm text-[color:var(--muted)]">
-                  {project.description}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {project.stack.map((tag) => (
-                    <span key={tag} className="tag">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+          <Motion.div
+            className="hero-stage"
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.85, ease: 'easeOut', delay: 0.15 }}
+          >
+            <div className="orbit orbit-one" />
+            <div className="orbit orbit-two" />
+            <div className="phone-stack">
+              {apps.slice(0, 3).map((app, index) => (
                 <a
-                  className="btn-ghost mt-6 w-full"
-                  href={project.link}
+                  key={app.title}
+                  className={`floating-app floating-app-${index + 1}`}
+                  href={app.link}
                   target="_blank"
                   rel="noreferrer"
+                  aria-label={`View ${app.title} on Google Play`}
                 >
-                  View on Play Store
+                  <img src={app.image} alt={`${app.title} app icon`} />
                 </a>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      <motion.section
-        id="testimonials"
-        className="relative z-10"
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, amount: 0.2 }}
-        variants={sectionVariants}
-      >
-        <div className="container-shell py-16">
-          <motion.div className="flex flex-col gap-3" variants={itemVariants}>
-            <span className="pill">Testimonials</span>
-            <h2 className="text-3xl md:text-4xl">Teams I have shipped with.</h2>
-            <p className="max-w-2xl text-[color:var(--muted)]">
-              Feedback from founders and product leads on recent collaborations.
-            </p>
-          </motion.div>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {testimonials.map((item) => (
-              <motion.div key={item.name} className="card" variants={itemVariants}>
-                <p className="text-sm text-[color:var(--muted)]">"{item.quote}"</p>
-                <div className="mt-6">
-                  <p className="text-sm font-semibold">{item.name}</p>
-                  <p className="text-xs text-[color:var(--muted)]">{item.role}</p>
+              ))}
+              <div className="phone">
+                <div className="phone-top"><span /><span /></div>
+                <p>Published work</p>
+                <strong>6 apps.<br />One product mindset.</strong>
+                <div className="mini-app-grid">
+                  {apps.slice(3).map((app) => (
+                    <img key={app.title} src={app.image} alt="" />
+                  ))}
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
+                <small>Designed. Built. Shipped.</small>
+              </div>
+            </div>
+          </Motion.div>
 
-      <section id="contact" className="relative z-10">
-        <div className="container-shell py-16">
-          <div className="cta">
+          <div className="hero-proof">
+            <span>6 live apps</span><b>•</b><span>Product to Play Store</span><b>•</b><span>Mobile + Web</span>
+          </div>
+        </section>
+
+        <section id="work" className="work section-pad">
+          <Motion.div className="section-heading" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fade}>
             <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
-                Contact
-              </p>
-            <h2 className="mt-4 text-3xl md:text-4xl">
-              Ready to build your next Android, iOS, or web launch?
-            </h2>
-            <p className="mt-3 max-w-xl text-sm text-white/80">
-              Share your idea, deadline, and feature list. I will respond with a
-              clear scope and timeline.
-            </p>
+              <span className="section-index">01 / Selected work</span>
+              <h2>Products made for<br />real everyday needs.</h2>
             </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a className="btn-primary" href="mailto:prsuthar44@gmail.com">
-                prsuthar44@gmail.com
-              </a>
-              <a className="btn-ghost-invert" href="#projects">
-                See latest work
-              </a>
-            </div>
-            <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {socials.map((item) => (
-                <a
-                  key={item.label}
-                  className="group flex items-center justify-between gap-4 rounded-2xl border border-white/20 bg-white/10 px-4 py-3 text-left text-sm text-white/80 backdrop-blur transition hover:-translate-y-1 hover:border-white/60 hover:bg-white/20"
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <span className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 text-white">
-                      <SocialIcon type={item.type} />
-                    </span>
-                    <span>
-                      <span className="block text-sm font-semibold text-white">
-                        {item.label}
-                      </span>
-                      <span className="block text-xs text-white/70">
-                        {item.handle}
-                      </span>
-                    </span>
-                  </span>
-                  <span className="text-white/50 transition group-hover:text-white">
-                    ↗
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+            <p>Games, money tools, business utilities, and creative apps—each built around a clear job to be done.</p>
+          </Motion.div>
 
-      <footer className="relative z-10">
-        <div className="container-shell flex flex-col items-center gap-3 py-10 text-sm text-[color:var(--muted)] md:flex-row md:justify-between">
-          <p>© 2026 Vikas Suthar</p>
-          <div className="flex flex-wrap gap-4">
-            <a className="transition hover:text-[color:var(--ink)]" href="#home">
-              Back to top
-            </a>
-            <a
-              className="transition hover:text-[color:var(--ink)]"
-              href="mailto:prsuthar44@gmail.com"
-            >
-              Email
-            </a>
-            <span className="flex items-center gap-3">
-              {socials.map((item) => (
-                <a
-                  key={item.label}
-                  className="group inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-white/60 text-[color:var(--ink)] transition hover:-translate-y-1 hover:border-black/30"
-                  href={item.href}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={item.label}
-                  title={item.label}
-                >
-                  <span className="text-[color:var(--ink)] transition group-hover:text-black">
-                    <SocialIcon type={item.type} />
-                  </span>
-                </a>
-              ))}
-            </span>
+          <div className="project-grid">
+            {apps.map((app, index) => (
+              <Motion.article
+                className={`project-card ${app.featured ? 'project-featured' : ''}`}
+                key={app.title}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.15 }}
+                variants={fade}
+                style={{ '--project-accent': app.accent }}
+              >
+                <div className="project-visual">
+                  <span className="project-number">0{index + 1}</span>
+                  <div className="app-icon-wrap"><img src={app.image} alt={`${app.title} icon`} /></div>
+                  <span className="project-type">{app.type}</span>
+                </div>
+                <div className="project-content">
+                  <div>
+                    <p className="project-kicker">{app.subtitle}</p>
+                    <h3>{app.title}</h3>
+                  </div>
+                  <p>{app.description}</p>
+                  <div className="tag-row">
+                    {app.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                  </div>
+                  <div className="project-actions">
+                    <a className="store-link" href={app.link} target="_blank" rel="noreferrer">
+                      <PlayIcon /><span><small>GET IT ON</small>Google Play</span>
+                    </a>
+                    {app.website && <a className="circle-link" href={app.website} target="_blank" rel="noreferrer" aria-label={`${app.title} website`}><Arrow /></a>}
+                  </div>
+                </div>
+              </Motion.article>
+            ))}
           </div>
-        </div>
+        </section>
+
+        <section id="about" className="about section-pad">
+          <Motion.div className="about-lead" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.25 }} variants={fade}>
+            <span className="section-index">02 / How I work</span>
+            <h2>Design sense.<br />Engineering discipline.<br /><em>Founder energy.</em></h2>
+          </Motion.div>
+          <div className="capability-list">
+            {capabilities.map(([number, title, description]) => (
+              <Motion.div className="capability" key={number} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.5 }} variants={fade}>
+                <span>{number}</span><h3>{title}</h3><p>{description}</p>
+              </Motion.div>
+            ))}
+          </div>
+        </section>
+
+        <section id="next" className="next section-pad">
+          <Motion.div className="section-heading" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fade}>
+            <div><span className="section-index">03 / In the lab</span><h2>What I'm<br />building next.</h2></div>
+            <p>Three new product directions, grounded in practical problems and shaped through rapid experiments.</p>
+          </Motion.div>
+          <div className="upcoming-grid">
+            {upcoming.map((item) => (
+              <Motion.article className="upcoming-card" key={item.number} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }} variants={fade}>
+                <div className="upcoming-art" style={{ background: item.gradient }}>
+                  <span>{item.number}</span><i /><i /><i />
+                </div>
+                <p className="project-kicker">{item.label}</p>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+              </Motion.article>
+            ))}
+          </div>
+        </section>
+
+        <section id="contact" className="contact section-pad">
+          <Motion.div className="contact-inner" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fade}>
+            <span className="eyebrow"><i /> Have an idea?</span>
+            <h2>Let's turn it into<br />something people use.</h2>
+            <a className="button button-dark" href="mailto:prsuthar44@gmail.com">prsuthar44@gmail.com <Arrow /></a>
+            <div className="social-row">
+              <a href="https://www.linkedin.com/in/prsuthar" target="_blank" rel="noreferrer">LinkedIn <Arrow /></a>
+              <a href="https://github.com/vikassuthar44" target="_blank" rel="noreferrer">GitHub <Arrow /></a>
+              <a href="https://www.instagram.com/dev_vikas44/" target="_blank" rel="noreferrer">Instagram <Arrow /></a>
+            </div>
+          </Motion.div>
+        </section>
+      </main>
+
+      <footer>
+        <a className="brand" href="#top"><span className="brand-mark">VS</span><span>Vikas Suthar</span></a>
+        <p>Android developer & product builder · India</p>
+        <p>© 2026</p>
       </footer>
     </div>
   )
